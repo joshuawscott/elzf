@@ -39,7 +39,7 @@ static inline ERL_NIF_TERM make_error(ErlNifEnv *env, const char *msg)
 	return enif_make_tuple2(env, enif_make_atom(env, "error"), enif_make_atom(env, msg));
 }
 
-ERL_NIF_TERM lzf_zip(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
+static ERL_NIF_TERM lzf_zip(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
 	ErlNifBinary i, o;
 	unsigned os;
@@ -76,7 +76,7 @@ static ERL_NIF_TERM lzf_unzip(ErlNifEnv* env, ErlNifBinary *i, unsigned ms)
 	         : make_error(env, "insufficient_memory");
 }
 
-ERL_NIF_TERM lzf_unzip_2(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
+static ERL_NIF_TERM lzf_unzip_2(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
 	ErlNifBinary i;
 	unsigned ms;
@@ -86,7 +86,7 @@ ERL_NIF_TERM lzf_unzip_2(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 	       : enif_make_badarg(env);
 }
 
-ERL_NIF_TERM lzf_unzip_1(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
+static ERL_NIF_TERM lzf_unzip_1(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
 	ErlNifBinary i;
 
@@ -95,7 +95,7 @@ ERL_NIF_TERM lzf_unzip_1(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 	       : enif_make_badarg(env);
 }
 
-ERL_NIF_TERM lzf_compress_1(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
+static ERL_NIF_TERM lzf_compress_1(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
 	ErlNifBinary i, o;
 	unsigned os;
@@ -117,7 +117,7 @@ ERL_NIF_TERM lzf_compress_1(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 	return make_error(env, s);
 }
 
-ERL_NIF_TERM lzf_decompress_1(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
+static ERL_NIF_TERM lzf_decompress_1(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
 	ErlNifBinary i, o;
 	unsigned os;
@@ -134,17 +134,17 @@ ERL_NIF_TERM lzf_decompress_1(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[
 	       : make_error(env, "unknown");
 }
 
-int on_load(ErlNifEnv *env, void **priv, ERL_NIF_TERM info)
+static int on_load(ErlNifEnv *env, void **priv, ERL_NIF_TERM info)
 {
 	return 0;
 }
 
-int on_reload(ErlNifEnv *env, void**priv, ERL_NIF_TERM info)
+static int on_reload(ErlNifEnv *env, void**priv, ERL_NIF_TERM info)
 {
 	return 0;
 }
 
-int on_upgrade(ErlNifEnv *env, void **priv, void** old_priv, ERL_NIF_TERM info)
+static int on_upgrade(ErlNifEnv *env, void **priv, void** old_priv, ERL_NIF_TERM info)
 {
 	return 0;
 }
