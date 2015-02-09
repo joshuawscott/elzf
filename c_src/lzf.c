@@ -155,6 +155,7 @@ static ErlNifFunc nif_functions[] = {
 	{"unzip", 2, lzf_unzip_2},
 	{"unzip", 1, lzf_unzip_1},
 	{"compress", 1, lzf_compress_1},
+	{"uncompress", 1, lzf_decompress_1},
 	{"decompress", 1, lzf_decompress_1}
 };
 

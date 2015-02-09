@@ -37,7 +37,9 @@ lzf() ->
     Decompressed3 = lzf:unzip(Compressed1),
     {ok, Compressed4} = lzf:compress(Data),
     {ok, Decompressed4} = lzf:decompress(Compressed4),
+    {ok, Decompressed5} = lzf:uncompress(Compressed4),
     ?assertEqual(Data, Decompressed1),
     ?assertEqual(Data, Decompressed2),
     ?assertEqual(Data, Decompressed3),
-    ?assertEqual(Data, Decompressed4).
+    ?assertEqual(Data, Decompressed4),
+    ?assertEqual(Data, Decompressed5).
