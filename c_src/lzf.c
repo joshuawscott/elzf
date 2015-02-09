@@ -81,10 +81,9 @@ ERL_NIF_TERM lzf_unzip_2(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 	ErlNifBinary i;
 	unsigned ms;
 
-	return (!enif_is_number(env, argv[1]) || !enif_get_uint(env, argv[1], &ms) ||
-		(!enif_inspect_binary(env, argv[0], &i) && !enif_inspect_iolist_as_binary(env, argv[0], &i)))
-	       ? enif_make_badarg(env)
-	       : lzf_unzip(env, &i, ms);
+	return (enif_get_uint(env, argv[1], &ms) && enif_inspect_iolist_as_binary(env, argv[0], &i))
+	       ? lzf_unzip(env, &i, ms)
+	       : enif_make_badarg(env);
 }
 
 ERL_NIF_TERM lzf_unzip_1(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
