@@ -1,6 +1,6 @@
 {application, lzf,
  [{description, "LZF compressor/decompressor Erlang NIF wrapper"},
-  {vsn, "0.1.0"},
+  {vsn, "0.1.2"},
   {registered, []},
   {applications, [kernel, stdlib]},
   {env, []},

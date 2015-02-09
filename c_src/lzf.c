@@ -49,7 +49,7 @@ ERL_NIF_TERM lzf_zip(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 		return enif_make_badarg(env);
 
 	if (!enif_alloc_binary(i.size + (i.size + 24) / 25, &o))
-		return make_error(NULL, s);
+		return make_error(env, s);
 
 	os = lzf_compress((const void*)i.data, (unsigned)i.size, o.data, o.size);
 	if (os) {
@@ -66,7 +66,7 @@ static ERL_NIF_TERM lzf_unzip(ErlNifEnv* env, ErlNifBinary *i, unsigned ms)
 	unsigned os;
 
 	if (!enif_alloc_binary(ms, &o))
-		return make_error(NULL, "insufficient_memory");
+		return make_error(env, "insufficient_memory");
 
 	os = lzf_decompress((const void*)i->data, i->size, o.data, o.size);
 	return !os
@@ -127,7 +127,7 @@ ERL_NIF_TERM lzf_decompress_1(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[
 		return enif_make_badarg(env);
 
 	if (!enif_alloc_binary(*(uint32_t*)i.data, &o))
-		return make_error(NULL, "insufficient_memory");
+		return make_error(env, "insufficient_memory");
 
 	os = lzf_decompress((const void*)i.data + sizeof(uint32_t), i.size - sizeof(uint32_t), o.data, o.size);
 	return os
